@@ -1,100 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok Counter Tools</title>
-  <meta name="description" content="Free TikTok calculators to calculate engagement rate, likes, views and follower growth.">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 850px;
-      margin: auto;
-      padding: 20px;
-      background: #f4f6f8;
-      color: #222;
-    }
-    header, section {
-      background: white;
-      padding: 20px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-    }
-    h1, h2 { color: #d62976; }
-    input, button {
-      box-sizing: border-box;
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      font-size: 16px;
-    }
-    button {
-      background: #d62976;
-      color: white;
-      border: 0;
-      border-radius: 6px;
-    }
-    .result { font-weight: bold; overflow-wrap: anywhere; }
+    body { font-family: Arial; max-width:850px; margin:auto; padding:20px; background:#f4f6f8; }
+    header, section, article { background:white; padding:20px; margin-bottom:18px; border-radius:12px; }
+    input { width:100%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:8px; }
+    button { background:#ff0050; color:white; border:none; padding:12px; border-radius:8px; width:100%; font-weight:bold; }
+    #result { font-size:22px; font-weight:bold; margin-top:15px; color:#ff0050; }
+    footer { text-align:center; margin-top:30px; padding:20px; background:#fff; border-radius:12px; }
+    footer a { margin:0 10px; color:#ff0050; text-decoration:none; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>TikTok Counter Tools</h1>
-    <p>Free tools to understand your TikTok account statistics.</p>
-  </header>
-
-  <section>
-    <h2>Engagement Rate Calculator</h2>
-    <p>Enter your likes, comments, shares and followers.</p>
-    <label>Likes</label>
-    <input id="likes" type="number" min="0" placeholder="Enter likes">
-    <label>Comments</label>
-    <input id="comments" type="number" min="0" placeholder="Enter comments">
-    <label>Shares</label>
-    <input id="shares" type="number" min="0" placeholder="Enter shares">
-    <label>Followers</label>
-    <input id="followers" type="number" min="0" placeholder="Enter followers">
-    <button onclick="calculate()">Calculate engagement rate</button>
-    <p id="result" class="result" aria-live="polite"></p>
-  </section>
-
-  <section>
-    <h2>How to use this calculator</h2>
-    <p>Enter the public statistics for a TikTok post or account. The calculator adds likes, comments and shares, then divides the total by your follower count.</p>
-    <p>Formula: (Likes + Comments + Shares) ÷ Followers × 100.</p>
-    <p>This is an estimate. Engagement rates vary by account, audience and post.</p>
-  </section>
-
-  <section>
-    <h2>About this website</h2>
-    <p>TikTok Counter Tools provides simple calculations to help creators understand their engagement. Results are calculated in your browser.</p>
-  </section>
-
-  <footer>
-    <p>Independent fan-made tool. Not affiliated with TikTok.</p>
-  </footer>
-
-  <script>
-    function calculate() {
-      const likes = Number(document.getElementById('likes').value);
-      const comments = Number(document.getElementById('comments').value);
-      const shares = Number(document.getElementById('shares').value);
-      const followers = Number(document.getElementById('followers').value);
-      const result = document.getElementById('result');
-
-      if ([likes, comments, shares, followers].some(v => v < 0) ||
-          followers <= 0 ||
-          ['likes', 'comments', 'shares', 'followers'].some(id =>
-            document.getElementById(id).value === '')) {
-        result.textContent = 'Please enter all values. Followers must be greater than zero.';
-        return;
-      }
-
-      const rate = ((likes + comments + shares) / followers) * 100;
-      result.textContent = 'Estimated engagement rate: ' + rate.toFixed(2) + '%';
-    }
-  </script>
+<header>
+<h1>TikTok Engagement Rate Calculator</h1>
+<p>Free tool for TikTok creators in Pakistan</p>
+</header>
+<section>
+<h2>Calculate Your Rate</h2>
+<input type="number" id="followers" placeholder="Followers e.g. 10000">
+<input type="number" id="likes" placeholder="Likes e.g. 800">
+<input type="number" id="comments" placeholder="Comments e.g. 100">
+<input type="number" id="shares" placeholder="Shares e.g. 50">
+<button onclick="calculate()">Calculate</button>
+<div id="result"></div>
+</section>
+<script>
+function calculate(){
+  let f = parseFloat(document.getElementById('followers').value) || 0;
+  let l = parseFloat(document.getElementById('likes').value) || 0;
+  let c = parseFloat(document.getElementById('comments').value) || 0;
+  let s = parseFloat(document.getElementById('shares').value) || 0;
+  if(f==0){ document.getElementById('result').innerText="Please enter followers"; return; }
+  let rate = ((l+c+s)/f*100).toFixed(2);
+  document.getElementById('result').innerText="Your Rate is: "+rate+"%";
+}
+</script>
+<article>
+<h2>What is TikTok Engagement Rate?</h2>
+<p>TikTok Engagement Rate shows how much your audience interacts with your content. Formula: (Likes + Comments + Shares / Followers) * 100. 3% to 6% is good. Above 6% is viral. This tool by Antal Hayyat from Faisalabad helps Pakistani creators check performance without login.</p>
+<h2>How to Increase Engagement?</h2>
+<p>1. Post at 7 PM to 11 PM Pakistan Time<br>2. Use 3-4 trending hashtags<br>3. Reply to comments in first 30 mins<br>4. Make original content.</p>
+</article>
+<footer>
+<a href="about.html">About Us</a> | <a href="contact.html">Contact Us</a> | <a href="privacy.html">Privacy Policy</a>
+<p>© 2026 by antalhayyat04</p>
+</footer>
 </body>
-      </html>
+</html>
       
